@@ -1,0 +1,466 @@
+<html lang="en">
+
+<head>
+    <title>Dashboard</title>
+    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
+    <!--     Fonts and icons     -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" />
+    <!-- CSS Files -->
+    <link href="../static/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="../static/css/light-bootstrap-dashboard.css?v=2.0.0 " rel="stylesheet" />
+    <!-- CSS Just for demo purpose, don't include it in your project -->
+    <link href="../static/css/demo.css" rel="stylesheet" />
+    <link rel="icon" type="image/png" href="../static/img/ALTEN-Logo.png">
+	
+	</head>
+<body>
+    <div class="wrapper">    
+    <div class="card-header ">
+        <h1 class="card-title" style="margin-top: 0; color: #31bcf3;">Dashboard Sample Title</h1>
+        <p class="card-category">Here is a subtitle for this Dashboard. Here is a subtitle for this Dashboard .Here is a subtitle for this Dashboard.</p>
+    
+        
+
+        <div class="content">
+            <div class="container-fluid">
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card" style="padding-right: 1%;">
+                            <div class="card-body " >
+                    <form action="" method="">
+                        <div class="row">
+                            <div class="col-md-3 pr-1">
+                                <div class="form-group">
+                                    <label>From Date</label>
+                                    <input type="date" class="form-control" name="fromdate">
+                                </div>
+                            </div>
+                            <div class="col-md-3 pr-1">
+                                <div class="form-group">
+                                    <label>To date</label>
+                                    <input type="date" class="form-control" name="todate">
+                                </div>
+                            </div>
+                            <div class="col-md-4 px-1">
+                                <div class="form-group">
+                                    <label>Select something</label>
+                                    <select class="form-control" placeholder="Choose airline">
+                                    <option value="a">a</option>
+                                    <option value="b">b</option>
+                                    <option value="c">c</option>
+                                    <option value="d">d</option>
+                                    
+                                </select>
+                                </div>
+                            </div>
+							<div class="col-md-2 pr-1">
+                                <div class="form-group">
+                                    <label>Apply Filter</label>
+                                    <input type="submit" class="form-control btn btn-info btn-fill " value="Apply">
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                    </div></div></div>
+                </div>
+                
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="card ">
+                            <div class="card-header ">
+                                <h4 class="card-title">Email Statistics</h4>
+                                <p class="card-category">Last Campaign Performance</p>
+                            </div>
+                            <div class="card-body ">
+                                <div id="chartPreferences" class="ct-chart ct-perfect-fourth"></div>
+                                <div class="legend">
+                                    <i class="fa fa-circle text-info"></i> Open
+                                    <i class="fa fa-circle text-danger"></i> Bounce
+                                    <i class="fa fa-circle text-warning"></i> Unsubscribe
+                                </div>
+                                <hr>
+                                <div class="stats">
+                                    <i class="fa fa-clock-o"></i> Campaign sent 2 days ago
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card ">
+                            <div class="card-header ">
+                                <h4 class="card-title">Users Behavior</h4>
+                                <p class="card-category">24 Hours performance</p>
+                            </div>
+                            <div class="card-body ">
+                                <div id="chartHours" class="ct-chart"></div>
+                            </div>
+                            <div class="card-footer ">
+                                <div class="legend">
+                                    <i class="fa fa-circle text-info"></i> Open
+                                    <i class="fa fa-circle text-danger"></i> Click
+                                    <i class="fa fa-circle text-warning"></i> Click Second Time
+                                </div>
+                                <hr>
+                                <div class="stats">
+                                    <i class="fa fa-history"></i> Updated 3 minutes ago
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card ">
+                            <div class="card-header ">
+                                <h4 class="card-title">2017 Sales</h4>
+                                <p class="card-category">All products including Taxes</p>
+                            </div>
+                            <div class="card-body ">
+                                <div id="chartActivity" class="ct-chart"></div>
+                            </div>
+                            <div class="card-footer ">
+                                <div class="legend">
+                                    <i class="fa fa-circle text-info"></i> Tesla Model S
+                                    <i class="fa fa-circle text-danger"></i> BMW 5 Series
+                                </div>
+                                <hr>
+                                <div class="stats">
+                                    <i class="fa fa-check"></i> Data information certified
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-0">
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+</body>
+<!--   Core JS Files   -->
+<script src="../static/js/core/jquery.3.2.1.min.js" type="text/javascript"></script>
+<script src="../static/js/core/popper.min.js" type="text/javascript"></script>
+<script src="../static/js/core/bootstrap.min.js" type="text/javascript"></script>
+<!--  Plugin for Switches, full documentation here: http://www.jque.re/plugins/version3/bootstrap.switch/ -->
+<script src="../static/js/plugins/bootstrap-switch.js"></script>
+<!--  Google Maps Plugin    -->
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
+<!--  Chartist Plugin  -->
+<script src="../static/js/plugins/chartist.min.js"></script>
+<!--  Notifications Plugin    -->
+<script src="../static/js/plugins/bootstrap-notify.js"></script>
+<!-- Control Center for Light Bootstrap Dashboard: scripts for the example pages etc -->
+<script src="../static/js/light-bootstrap-dashboard.js?v=2.0.0 " type="text/javascript"></script>
+<!-- Light Bootstrap Dashboard DEMO methods, don't include it in your project! -->
+<!--
+<script src="../static/js/demo.js"></script>
+-->
+
+
+<script>
+	$().ready(function() {
+    $sidebar = $('.sidebar');
+    $sidebar_img_container = $sidebar.find('.sidebar-background');
+
+    $full_page = $('.full-page');
+
+    $sidebar_responsive = $('body > .navbar-collapse');
+
+    window_width = $(window).width();
+
+    fixed_plugin_open = $('.sidebar .sidebar-wrapper .nav li.active a p').html();
+
+    if (window_width > 767 && fixed_plugin_open == 'Dashboard') {
+        if ($('.fixed-plugin .dropdown').hasClass('show-dropdown')) {
+            $('.fixed-plugin .dropdown').addClass('show');
+        }
+
+    }
+
+    $('.fixed-plugin a').click(function(event) {
+        // Alex if we click on switch, stop propagation of the event, so the dropdown will not be hide, otherwise we set the  section active
+        if ($(this).hasClass('switch-trigger')) {
+            if (event.stopPropagation) {
+                event.stopPropagation();
+            } else if (window.event) {
+                window.event.cancelBubble = true;
+            }
+        }
+    });
+
+    $('.fixed-plugin .background-color span').click(function() {
+        $(this).siblings().removeClass('active');
+        $(this).addClass('active');
+
+        var new_color = $(this).data('color');
+
+        if ($sidebar.length != 0) {
+            $sidebar.attr('data-color', new_color);
+        }
+
+        if ($full_page.length != 0) {
+            $full_page.attr('filter-color', new_color);
+        }
+
+        if ($sidebar_responsive.length != 0) {
+            $sidebar_responsive.attr('data-color', new_color);
+        }
+    });
+
+    $('.fixed-plugin .img-holder').click(function() {
+        $full_page_background = $('.full-page-background');
+
+        $(this).parent('li').siblings().removeClass('active');
+        $(this).parent('li').addClass('active');
+
+
+        var new_image = $(this).find("img").attr('src');
+
+        if ($sidebar_img_container.length != 0 && $('.switch-sidebar-image input:checked').length != 0) {
+            $sidebar_img_container.fadeOut('fast', function() {
+                $sidebar_img_container.css('background-image', 'url("' + new_image + '")');
+                $sidebar_img_container.fadeIn('fast');
+            });
+        }
+
+        if ($full_page_background.length != 0 && $('.switch-sidebar-image input:checked').length != 0) {
+            var new_image_full_page = $('.fixed-plugin li.active .img-holder').find('img').data('src');
+
+            $full_page_background.fadeOut('fast', function() {
+                $full_page_background.css('background-image', 'url("' + new_image_full_page + '")');
+                $full_page_background.fadeIn('fast');
+            });
+        }
+
+        if ($('.switch-sidebar-image input:checked').length == 0) {
+            var new_image = $('.fixed-plugin li.active .img-holder').find("img").attr('src');
+            var new_image_full_page = $('.fixed-plugin li.active .img-holder').find('img').data('src');
+
+            $sidebar_img_container.css('background-image', 'url("' + new_image + '")');
+            $full_page_background.css('background-image', 'url("' + new_image_full_page + '")');
+        }
+
+        if ($sidebar_responsive.length != 0) {
+            $sidebar_responsive.css('background-image', 'url("' + new_image + '")');
+        }
+    });
+
+    $('.switch input').on("switchChange.bootstrapSwitch", function() {
+
+        $full_page_background = $('.full-page-background');
+
+        $input = $(this);
+
+        if ($input.is(':checked')) {
+            if ($sidebar_img_container.length != 0) {
+                $sidebar_img_container.fadeIn('fast');
+                $sidebar.attr('data-image', '#');
+            }
+
+            if ($full_page_background.length != 0) {
+                $full_page_background.fadeIn('fast');
+                $full_page.attr('data-image', '#');
+            }
+
+            background_image = true;
+        } else {
+            if ($sidebar_img_container.length != 0) {
+                $sidebar.removeAttr('data-image');
+                $sidebar_img_container.fadeOut('fast');
+            }
+
+            if ($full_page_background.length != 0) {
+                $full_page.removeAttr('data-image', '#');
+                $full_page_background.fadeOut('fast');
+            }
+
+            background_image = false;
+        }
+    });
+});
+
+type = ['primary', 'info', 'success', 'warning', 'danger'];
+
+demo = {
+    initPickColor: function() {
+        $('.pick-class-label').click(function() {
+            var new_class = $(this).attr('new-class');
+            var old_class = $('#display-buttons').attr('data-class');
+            var display_div = $('#display-buttons');
+            if (display_div.length) {
+                var display_buttons = display_div.find('.btn');
+                display_buttons.removeClass(old_class);
+                display_buttons.addClass(new_class);
+                display_div.attr('data-class', new_class);
+            }
+        });
+    },
+
+    initDocumentationCharts: function() {
+        /* ----------==========     Daily Sales Chart initialization For Documentation    ==========---------- */
+
+        dataDailySalesChart = {
+            labels: ['M', 'T', 'W', 'T', 'F', 'S', 'S'],
+            series: [
+                [12, 17, 7, 17, 23, 18, 38]
+            ]
+        };
+
+        optionsDailySalesChart = {
+            lineSmooth: Chartist.Interpolation.cardinal({
+                tension: 0
+            }),
+            low: 0,
+            high: 50, // creative tim: we recommend you to set the high sa the biggest value + something for a better look
+            chartPadding: {
+                top: 0,
+                right: 0,
+                bottom: 0,
+                left: 0
+            },
+        }
+
+        var dailySalesChart = new Chartist.Line('#dailySalesChart', dataDailySalesChart, optionsDailySalesChart);
+
+       
+    },
+
+    initDashboardPageCharts: function() {
+
+        var dataPreferences = {
+            series: [
+                [25, 30, 20, 25]
+            ]
+        };
+
+        var optionsPreferences = {
+            donut: true,
+            donutWidth: 40,
+            startAngle: 0,
+            total: 100,
+            showLabel: false,
+            axisX: {
+                showGrid: false
+            }
+        };
+
+        Chartist.Pie('#chartPreferences', dataPreferences, optionsPreferences);
+
+        Chartist.Pie('#chartPreferences', {
+            labels: ['53%', '36%', '11%'],
+            series: [53, 36, 11]
+        });
+
+
+        var dataSales = {
+            labels: ['9:00AM', '12:00AM', '3:00PM', '6:00PM', '9:00PM', '12:00PM', '3:00AM', '6:00AM'],
+            series: [
+                [287, 385, -490, 492, 554, 586, 698, 695, 752, 788, 846, 944],
+                [-67, 152, 143, -940, 900, 335, 100, 437, 539, 542, 544, 647],
+                [23, 113, 67, 108, 190, 239, 307, 308, 439, 410, 410, 509]
+                
+            ]
+        };
+
+
+        var optionsSales = {
+            lineSmooth: false,
+            low: -1000,
+            high: 1000,
+            showArea: true,
+            height: "245px",
+            axisX: {
+                showGrid: false,
+            },
+            lineSmooth: Chartist.Interpolation.simple({
+                divisor: 3
+            }),
+            showLine: false,
+            showPoint: false,
+            fullWidth: false
+        };
+
+        var responsiveSales = [
+            ['screen and (max-width: 640px)', {
+                axisX: {
+                    labelInterpolationFnc: function(value) {
+                        return value[0];
+                    }
+                }
+            }]
+        ];
+
+        var chartHours = Chartist.Line('#chartHours', dataSales, optionsSales, responsiveSales);
+
+        
+        var data = {
+            labels: ['Jan', 'Feb', 'Mar', 'Apr', 'Mai', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+            series: [
+                [542, 443, 320, 780, 553, 453, 326, 434, 568, 610, 756, 895],
+                [412, 243, 280, 580, 453, 353, 300, 364, 368, 410, 636, 695],
+                [242, 743, 620, 510, 553, 493, 826, 134, 768, 250, 956, 495],
+            ]
+        };
+
+        var options = {
+            seriesBarDistance: 10,
+            axisX: {
+                showGrid: false
+            },
+            height: "245px"
+        };
+
+        var responsiveOptions = [
+            ['screen and (max-width: 640px)', {
+                seriesBarDistance: 5,
+                axisX: {
+                    labelInterpolationFnc: function(value) {
+                        return value[0];
+                    }
+                }
+            }]
+        ];
+
+        var chartActivity = Chartist.Bar('#chartActivity', data, options, responsiveOptions);
+
+        
+
+    },
+
+    
+    showNotification: function(from, align) {
+        color = Math.floor((Math.random() * 4) + 1);
+
+        $.notify({
+            icon: "nc-icon nc-app",
+            message: "Welcome to <b>Light Bootstrap Dashboard</b> - a beautiful freebie for every web developer."
+
+        }, {
+            type: type[color],
+            timer: 8000,
+            placement: {
+                from: from,
+                align: align
+            }
+        });
+    }
+
+
+
+}
+//..........................................................
+    $(document).ready(function() {
+        // Javascript method's body can be found in static/js/demos.js
+        demo.initDashboardPageCharts();
+
+        //demo.showNotification();
+
+    });
+	</script>
+
+
+
+</html>
