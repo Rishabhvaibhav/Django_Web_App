@@ -1,10 +1,10 @@
 # Flight-Data-Analysis-and-Visualization-Project
 # Tools/Technology : Python,SQL,API, Django, HTML, CSS, JavaScript
-# Built a scalable and maintainable web application.
-# Developed an interactive flight data dashboard using Python Django, API, and SQL.
-# Created dashboards that are easy to understand and use.
-# Managed continuous maintenance and troubleshooting of the project.
-# Handled front-end development using HTML, CSS, and JavaScript..
+Built a scalable and maintainable web application.
+Developed an interactive flight data dashboard using Python Django, API, and SQL.
+Created dashboards that are easy to understand and use.
+Managed continuous maintenance and troubleshooting of the project.
+Handled front-end development using HTML, CSS, and JavaScript..
 
 HOW TO RUN 
 
