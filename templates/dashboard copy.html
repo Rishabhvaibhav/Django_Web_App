@@ -1,7 +1,7 @@
 <html lang="en">
 
 <head>
-    <title>Dashboard</title>
+    <title>Airline Dashboard</title>
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
     <!--     Fonts and icons     -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" />
@@ -11,13 +11,22 @@
     <!-- CSS Just for demo purpose, don't include it in your project -->
     <link href="../static/css/demo.css" rel="stylesheet" />
     <link rel="icon" type="image/png" href="../static/img/ALTEN-Logo.png">
+    {{ pie_chart_data.labels|json_script:"pie_chart_data.labels" }}
+    {{ delay_chart_data.labels|json_script:"delay_chart_data.labels" }}
+    {{ bar_chart_data.labels|json_script:"bar_chart_data.labels" }}
+    <script>
+        {% if cards_data.total_flights == 0%}
+        alert('No data found for the applied filter(s)');
+        window.location.href="/";
+        {%endif%}
+    </script>
 	
 	</head>
-<body>
+<body style="background-color:#FFFFFF;">
     <div class="wrapper">    
     <div class="card-header ">
-        <h1 class="card-title" style="margin-top: 0; color: #31bcf3;">Dashboard Sample Title</h1>
-        <p class="card-category">Here is a subtitle for this Dashboard. Here is a subtitle for this Dashboard .Here is a subtitle for this Dashboard.</p>
+        <h1 class="card-title" style="margin-top: 0; color: #31bcf3;"><u>Airline Data</u></h1>
+        <p class="card-category"style=""><i>This page visualizes the insights of a airline data in form of statistical graphs</i></p>
     
         
 
@@ -30,115 +39,189 @@
                             <div class="card-body " >
                     <form action="" method="">
                         <div class="row">
-                            <div class="col-md-3 pr-1">
+                            <div class="col-md-2 pr-1">
                                 <div class="form-group">
                                     <label>From Date</label>
-                                    <input type="date" class="form-control" name="fromdate">
+                                    <input type="date" class="form-control" name="fromdate" value="{{request.GET.fromdate}}">
                                 </div>
                             </div>
-                            <div class="col-md-3 pr-1">
+                            <div class="col-md-2 pr-1">
                                 <div class="form-group">
                                     <label>To date</label>
-                                    <input type="date" class="form-control" name="todate">
+                                    <input type="date" class="form-control" name="todate" value="{{request.GET.todate}}">
                                 </div>
                             </div>
-                            <div class="col-md-4 px-1">
+                            <div class="col-md-2 px-1">
                                 <div class="form-group">
-                                    <label>Select something</label>
-                                    <select class="form-control" placeholder="Choose airline">
-                                    <option value="a">a</option>
-                                    <option value="b">b</option>
-                                    <option value="c">c</option>
-                                    <option value="d">d</option>
-                                    
+                                    <label>Select Airline</label>
+                                    <select class="form-control" name="airline">
+                                        <option value="">Select</option>
+                                        {% for i in show.airline %}
+                                        {% if i == request.GET.airline %}
+                                        <option selected="selected">{{request.GET.airline}}</option>
+                                        {% else %}
+                                        <option >{{i}}</option>
+                                        {% endif %}
+                                        {% endfor %}
+                                </select>
+                                </div>
+                            </div>
+							 
+                            <div class="col-md-2 px-1">
+                                <div class="form-group">
+                                    <label>Select Source (ORIGIN_AIPORT)</label>
+                                    <select class="form-control" name="origin_airport">
+                                        <option value="">Select</option>
+                                        {% for i in show.origin_airport %}
+                                        {% if i == request.GET.origin_airport %}
+                                        <option selected="selected">{{request.GET.origin_airport}}</option>
+                                        {% else %}
+                                        <option >{{i}}</option>
+                                        {% endif %}
+                                        {% endfor %}
+                                        
+                                </select>
+                                </div>
+                            </div>
+							<div class="col-md-2 px-1">
+                                <div class="form-group">
+                                    <label>Select Destination (DESTINATION_AIRPORT)</label>
+                                    <select class="form-control" name="destination_airport">
+                                        <option value="">Select</option>
+                                        {% for i in show.destination_airport %}
+                                        {% if i == request.GET.destination_airport %}
+                                        <option selected="selected">{{request.GET.destination_airport}}</option>
+                                        {% else %}
+                                        <option >{{i}}</option>
+                                        {% endif %}
+                                        {% endfor %}
+                                      
                                 </select>
                                 </div>
                             </div>
 							<div class="col-md-2 pr-1">
                                 <div class="form-group">
                                     <label>Apply Filter</label>
-                                    <input type="submit" class="form-control btn btn-info btn-fill " value="Apply">
+                                    <input type="submit" class="form-control btn btn-info btn-fill" value="Apply">
                                 </div>
                             </div>
                         </div>
+ 
                     </form>
                     </div></div></div>
                 </div>
-                
+                	<div class="row"style="text-align:center">
+                        <div class="col-md-2">
+                            <div class="card bg-dark text-white">
+                                <div class="card-header ">
+                                <h4 class="card-title">Total Flights: {{ cards_data.total_flights }}</h4>
+                            </div>
+                            <div class="card-body ">
+                                
+                            </div>
+                        </div>
+                    </div>
+					<div class="col-md-2">
+                        <div class="card bg-dark text-white">
+                            <div class="card-header ">
+                                <h4 class="card-title">Total Airlines: {{cards_data.total_airline}}</h4>
+                            </div>
+                            <div class="card-body ">
+                                
+                            </div>
+                        </div>
+                    </div>
+					<div class="col-md-2">
+                        <div class="card bg-success text-white">
+                            <div class="card-header ">
+                                <h4 class="card-title"style="color:green;">On Time: {{cards_data.on_time_flights}}</h4>
+                            </div>
+                            <div class="card-body ">
+                                
+                            </div>
+                        </div>
+                    </div>
+					<div class="col-md-2">
+                        <div class="card bg-warning text-white">
+                            <div class="card-header ">
+                                <h4 class="card-title">Delay: {{cards_data.delay_flights}}</h4>
+                            </div>
+                            <div class="card-body ">
+                            </div>
+                            </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="card bg-danger text-white">
+                            <div class="card-header ">
+                                <h4 class="card-title"style="color:red;">Cancelled: {{cards_data.cancelled_flights}}</h4>
+                            </div>
+                            <div class="card-body ">
+                            </div>
+                        </div>    
+                    </div>
+                </div>
                 <div class="row">
                     <div class="col-md-4">
                         <div class="card ">
                             <div class="card-header ">
-                                <h4 class="card-title">Email Statistics</h4>
-                                <p class="card-category">Last Campaign Performance</p>
+                                <h4 class="card-title"><b>Flights which are "Delayed" & "On Time" in %</b></h4>
                             </div>
                             <div class="card-body ">
-                                <div id="chartPreferences" class="ct-chart ct-perfect-fourth"></div>
+                                <div id="chartPreferences" class="ct-chart ct-perfect-fourth"style="height:400px"></div>
                                 <div class="legend">
-                                    <i class="fa fa-circle text-info"></i> Open
-                                    <i class="fa fa-circle text-danger"></i> Bounce
-                                    <i class="fa fa-circle text-warning"></i> Unsubscribe
-                                </div>
-                                <hr>
-                                <div class="stats">
-                                    <i class="fa fa-clock-o"></i> Campaign sent 2 days ago
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-8">
-                        <div class="card ">
-                            <div class="card-header ">
-                                <h4 class="card-title">Users Behavior</h4>
-                                <p class="card-category">24 Hours performance</p>
-                            </div>
-                            <div class="card-body ">
-                                <div id="chartHours" class="ct-chart"></div>
-                            </div>
-                            <div class="card-footer ">
-                                <div class="legend">
-                                    <i class="fa fa-circle text-info"></i> Open
-                                    <i class="fa fa-circle text-danger"></i> Click
-                                    <i class="fa fa-circle text-warning"></i> Click Second Time
-                                </div>
-                                <hr>
-                                <div class="stats">
-                                    <i class="fa fa-history"></i> Updated 3 minutes ago
-                                </div>
+                                    <i class="fa fa-circle text-info"></i> {{ pie_chart_data.name.0 }}
+                                    <i class="fa fa-circle text-danger"></i> {{ pie_chart_data.name.1 }}
+                                
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-md-12">
+                
+                    <div class="col-md-8">
                         <div class="card ">
                             <div class="card-header ">
-                                <h4 class="card-title">2017 Sales</h4>
-                                <p class="card-category">All products including Taxes</p>
+                                <h4 class="card-title"><b>Bar chart for average delay of flights</b></h4>
+                                <p class="card-category">Displaying the arrival and departure delays for each month</p>
                             </div>
                             <div class="card-body ">
-                                <div id="chartActivity" class="ct-chart"></div>
+                                <div id="chartActivity" class="ct-chart"style="height:350px"></div>
                             </div>
                             <div class="card-footer ">
                                 <div class="legend">
-                                    <i class="fa fa-circle text-info"></i> Tesla Model S
-                                    <i class="fa fa-circle text-danger"></i> BMW 5 Series
-                                </div>
-                                <hr>
-                                <div class="stats">
-                                    <i class="fa fa-check"></i> Data information certified
+                                    <i class="fa fa-circle text-info"></i> Arrival Delay
+                                    <i class="fa fa-circle text-danger"></i> Departure Delay
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-0">
+            </div>
+            <div class="col-md-12">
+                <div class="card ">
+                    <div class="card-header ">
+                        <h4 class="card-title"><b>Delay Chart of each airline in minutes</b></h4>
+                        <p class="card-category"> Average delay on time based on airline</p>
+                    </div>
+                    <div class="card-body ">
+                        <div id="chartHours" class="ct-chart"style="height:500px"></div>
+                    </div>
+                    <div class="card-footer ">
+                        <div class="legend">
+
+                            {% for x, y in delay_chart_data.airline_color.items %}
+                            <i class = "fa fa-circle" style = "color: {{y}};"></i> {{x}}
+                            {% endfor %}
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
                         
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    </div>
+ 
 </body>
 <!--   Core JS Files   -->
 <script src="../static/js/core/jquery.3.2.1.min.js" type="text/javascript"></script>
@@ -350,36 +433,32 @@ demo = {
         Chartist.Pie('#chartPreferences', dataPreferences, optionsPreferences);
 
         Chartist.Pie('#chartPreferences', {
-            labels: ['53%', '36%', '11%'],
-            series: [53, 36, 11]
+            labels: JSON.parse(document.getElementById('pie_chart_data.labels').textContent),
+            series: JSON.parse('{{ pie_chart_data.series }}')
         });
 
 
         var dataSales = {
-            labels: ['9:00AM', '12:00AM', '3:00PM', '6:00PM', '9:00PM', '12:00PM', '3:00AM', '6:00AM'],
-            series: [
-                [287, 385, -490, 492, 554, 586, 698, 695, 752, 788, 846, 944],
-                [-67, 152, 143, -940, 900, 335, 100, 437, 539, 542, 544, 647],
-                [23, 113, 67, 108, 190, 239, 307, 308, 439, 410, 410, 509]
-                
-            ]
+            labels: JSON.parse(document.getElementById('delay_chart_data.labels').textContent),
+            series: JSON.parse('{{delay_chart_data.series}}')
         };
 
 
         var optionsSales = {
             lineSmooth: false,
-            low: -1000,
-            high: 1000,
-            showArea: true,
-            height: "245px",
+            low: 0,
+            high: 40
+            ,
+            showArea: false,
+            height: "500px",
             axisX: {
                 showGrid: false,
             },
             lineSmooth: Chartist.Interpolation.simple({
-                divisor: 3
+                divisor: 6
             }),
-            showLine: false,
-            showPoint: false,
+            showLine: true,
+            showPoint: true,
             fullWidth: false
         };
 
@@ -397,25 +476,21 @@ demo = {
 
         
         var data = {
-            labels: ['Jan', 'Feb', 'Mar', 'Apr', 'Mai', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
-            series: [
-                [542, 443, 320, 780, 553, 453, 326, 434, 568, 610, 756, 895],
-                [412, 243, 280, 580, 453, 353, 300, 364, 368, 410, 636, 695],
-                [242, 743, 620, 510, 553, 493, 826, 134, 768, 250, 956, 495],
-            ]
+            labels: JSON.parse(document.getElementById('bar_chart_data.labels').textContent),
+            series: JSON.parse('{{ bar_chart_data.series }}')
         };
 
         var options = {
-            seriesBarDistance: 10,
+            seriesBarDistance: 15,
             axisX: {
-                showGrid: false
+                showGrid: true
             },
-            height: "245px"
+            height: "350px"
         };
 
         var responsiveOptions = [
-            ['screen and (max-width: 640px)', {
-                seriesBarDistance: 5,
+            ['screen and (max-width: 400px)', {
+                seriesBarDistance: 10,
                 axisX: {
                     labelInterpolationFnc: function(value) {
                         return value[0];
@@ -460,7 +535,5 @@ demo = {
 
     });
 	</script>
-
-
 
 </html>
